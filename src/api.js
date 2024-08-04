@@ -29,7 +29,7 @@ export const getBulkUploadFiles = async () => {
 export const uploadFile = async (formData) => {
   try {
     const { data } = await axios.post(
-      `https://3.111.38.0:5000/upload`,
+      `https://3.111.38.0/upload`,
       formData,
       apiFileHeaders
     );
