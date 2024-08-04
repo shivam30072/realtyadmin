@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // production
-const BASE_URL = "http://3.111.38.0:5000/api/v1";
+const BASE_URL = "https://3.111.38.0/api/v1";
 
 // local
 // const BASE_URL = 'http://localhost:5000/api/v1/'
@@ -29,7 +29,7 @@ export const getBulkUploadFiles = async () => {
 export const uploadFile = async (formData) => {
   try {
     const { data } = await axios.post(
-      `http://3.111.38.0:5000/upload`,
+      `https://3.111.38.0:5000/upload`,
       formData,
       apiFileHeaders
     );
