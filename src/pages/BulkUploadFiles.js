@@ -3,6 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import React, { useEffect, useRef, useState } from "react";
 import { getBulkUploadFiles, storeFiles, uploadFile } from "../api";
 import { Close, CloseOutlined } from "@mui/icons-material";
+import moment from "moment";
 
 const HiddenInput = styled("input")({
   display: "none",
@@ -95,8 +96,12 @@ const BulkUploadFiles = () => {
       width: 250,
       editable: false,
       renderCell: (params) => (
-        <a href={params.value} target="blank">
-          {params.value}
+        <a
+          style={{ textDecoration: "none", fontWeight: "bold" }}
+          href={params.value}
+          target="blank"
+        >
+          {"Download Excel File"}
         </a>
       ),
     },
@@ -124,6 +129,9 @@ const BulkUploadFiles = () => {
       field: "createdAt",
       headerName: "Created At",
       width: 250,
+      renderCell: (params) => (
+        <div>{moment(params.value).format("DD-MM-YYYY HH:mm:ss")}</div>
+      ),
     },
   ];
   const DatagridComponent = () => {
