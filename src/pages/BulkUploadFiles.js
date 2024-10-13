@@ -29,15 +29,21 @@ const UploadExcelModal = ({ onClose }) => {
     if (file) {
       console.log(file);
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append("files", file);
 
       try {
         const fileURL = await uploadFile(formData);
         console.log(`File uploaded successfully: ${fileURL}`);
 
-        const fileName = fileURL.split("/").pop().split("_").pop();
+        const fileName = fileURL.map((item) =>
+          item.split("/").pop().split("_").pop()
+        );
+        console.log("filename", fileName);
 
-        const response = await storeFiles({ fileName, fileURL });
+        const response = await storeFiles({
+          fileName,
+          fileURL,
+        });
         // window.location.reload()
         console.log(response);
         onClose();
@@ -130,7 +136,7 @@ const BulkUploadFiles = () => {
       headerName: "Created At",
       width: 250,
       renderCell: (params) => (
-        <div>{moment(params.value).format("DD-MM-YYYY HH:mm:ss")}</div>
+        <div>{moment(params.value).format("DD-MM-YYYY")}</div>
       ),
     },
   ];
@@ -184,7 +190,7 @@ const BulkUploadFiles = () => {
             setOpenModal(true);
           }}
         >
-          Upload
+          Bulk Upload
         </Button>
       </Box>
       {DatagridComponent()}

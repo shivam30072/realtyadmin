@@ -15,6 +15,15 @@ const Dashboard = () => {
       >
         BULK-UPLOAD FILES
       </Typography>
+      <Typography
+        p={2}
+        style={{ cursor: "pointer" }}
+        onClick={() => {
+          navigate("/all-properties");
+        }}
+      >
+        All Properties
+      </Typography>
     </div>
   );
 };
